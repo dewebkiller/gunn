@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="testimonial-wrapper">
+        <div class="owl-carousel owl-testimonial owl-theme">
+        <?php
+    $args1 = array(
+        'post_type' => 'testimonials',
+        'posts_per_page' => -1,
+        'orderby' => 'date',
+        'order' => 'DESC');
+    $loop1 = new WP_Query($args1);
+    while ($loop1->have_posts()) : $loop1->the_post();
+    $svg = get_field('svg_code');
+        ?>
+          <div class="item">
+            <div class="testimonial-thumb">
+            <?php the_post_thumbnail('dwk_banner', ['class' => 'img-responsive responsive--full', 'title' => 'the_title', 'alt' => 'the_title']); ?> 
+            </div>
+            <div class="testimonial-content">
+              <h3><?php the_title();?></h3>
+              <h4><?php echo get_field('testimonials_address');?></h4>
+              <?php the_content();?>
+            </div>
+          </div>
+          <?php endwhile;?>
+          
+        </div>
+      </div>
+    </div>
+  </div>
